@@ -1,4 +1,9 @@
 
+// function hash(name) {
+//   return name.charCodeAt(name);
+// }
+
+// console.log(hash('b')); // → 106
 
 class HashMap {
   loadFactor; 
@@ -8,23 +13,23 @@ class HashMap {
     let hashCode = 0;
     const primeNumber = 31;
     for (let i = 0; i < key.length; i++){
-      console.log(`initial hash: ${hashCode}`)
       hashCode = primeNumber * (hashCode % 16) + key.charCodeAt(i);
-      console.log(`second hash: ${hashCode}`)
-      console.log(`prime: ${primeNumber}`)
-      console.log(`hash: ${hashCode}`)
-      console.log(`key: ${key.charCodeAt(i)}`)
     }
     return (`my hashcode: ${hashCode}`) //% 16;
   }
 
   set (key, value){
-    
+    return `set: ${this.hash(key) + ':' + value}`;
   }
+
+
 }
 
-const hasher = new HashMap();
-console.log(hasher.hash('josephine'));
+
+const test = new HashMap();
+console.log(test.set ('apple', 'red'));
+// console.log(hasher.get ('name', 'John'))
+
 // console.log(hasher.hash('k'));
 
 
