@@ -1,10 +1,3 @@
-
-// function hash(name) {
-//   return name.charCodeAt(name);
-// }
-
-// console.log(hash('b')); // → 106
-
 class HashMap {
   loadFactor; 
   capacity;
@@ -15,27 +8,17 @@ class HashMap {
     for (let i = 0; i < key.length; i++){
       hashCode = primeNumber * (hashCode % 16) + key.charCodeAt(i);
     }
-    return (`my hashcode: ${hashCode}`) //% 16;
+    return (`my hashcode: ${hashCode}`) 
   }
 
   set (key, value){
     return `set: ${this.hash(key) + ':' + value}`;
   }
 
-
+  
 }
 
 
 const test = new HashMap();
 console.log(test.set ('apple', 'red'));
-// console.log(hasher.get ('name', 'John'))
-
-// console.log(hasher.hash('k'));
-
-
-  //  if (index < 0 || index >= buckets.length) {
-  //   throw new Error("Trying to access index out of bounds");
-  // }
-
-
-  //apply the modulo operator each iteration instead of outside the loop at the end
+clg
