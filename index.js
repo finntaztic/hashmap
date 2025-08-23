@@ -15,10 +15,17 @@ class HashMap {
     return `set: ${this.hash(key) + ':' + value}`;
   }
 
-  
 }
 
 
 const test = new HashMap();
 console.log(test.set ('apple', 'red'));
 clg
+
+//things that are confusing
+// can i limit the number of buckets?  am i supposed to limit it? i dont think the hashmap project says anything about it
+// is the term 'hash table' and 'bucket' interchangeable? im confuseddd
+// is the hash table and hashmap the same?
+// do i need hashtable for this? how many table anyway? isnt it the load factor and capacity?
+
+// 
