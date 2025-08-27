@@ -29,54 +29,83 @@ class HashMap {
   set(key, value){
     const index = this.hash(key);
     const newNode = new Node (key, value);
-    console.log(index)
+    // console.log(index)
 
     if (!this.storage[index]) { 
       this.storage[index] = newNode;
     } else { 
-      let current = this.storage[index];
-      console.log(current)
-      while (current.next){
-        current = current.next
-      }
-      current.next = newNode;
-    }
+      
+      // let current = this.storage[index];
+      // if (key == current.key){
+      //   current.value = value;
+      // } else {
+      //   while (current.next){
+      //   console.log(current.next)
+      //     current = current.next
+      //   }
+      //   current.next = newNode;
+      // }
+
+    let items = this.storage[index];
+
+
+    //problem is that  it doesnt loop thourgh to check if the key 
+    //alr exists therefore it sets the alr existing the new key to new node
+    //so it has to loop thorugh first to see if it has to add node or update value
+    while (items.key != key && items.next != null){
+      items = items.next;
+      items.next = newNode;
+      console.log(items)
+    } 
+    return items.value = value;
+
+
+    // while (current.next){
+    //     console.log(current.next)
+    //       current = current.next
+    //     }
+    //     current.next = newNode;
+    //   }
+  }
+      //  if (key == current.key){
+      //   current.value = value;
+      // } else {
+      //   while (current.next){
+      //   console.log(current.next)
+      //     current = current.next
+      //   }
+      //   current.next = newNode;
+      // }
   }
 
   get(key){
     const index = this.hash(key);
-    const items = this.storage[index];
+    let items = this.storage[index];
     console.log(items)
-
-    //why is the items not showing other set nodes? 
-
-    if (items){
-      for (let i = 0; i < items.length; i++){
-        if (items[i][0] === key)
-      }
+    
+    if (!items.key){
+      return null
+    } else 
+      while (items.key != key && items.next != null){
+      items = items.next;
     }
-    // console.log(index)
-    // for (let i = 0; i <this.storage.length; i++){
-    //   if (this.storage[index] = key){
-
-    //     // let current = this.storage[index];
-    //     // while (current.next){
-    //     //   current = current.next
-    //     // }
-    //     // current.next = 'hello'
-
-    //     // console.log(this.storage[index].value)
-    //     // return this.storage[index];
-    //   } else return 'null'
-    // }
+    return console.log(items.value);
   }
   }
 
 
 const test = new HashMap();
 test.set('apple', 'red');
-test.set('another', 'yellow');
+test.set('j', 'blue');
+test.set('apple', 'purple');
+
+// test.set('apple', 'purple');
+// test.set('j', 'purple');
+
 test.get('apple');
+test.get('j');
+
+
 
 
 //limit the size of the array inside the buckets
