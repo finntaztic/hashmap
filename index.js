@@ -52,8 +52,22 @@ class HashMap {
     const index = this.hash(key);
     let items = this.storage[index];
     // console.log(items)
+
+
+    // console.log(items.key)
+
+    // while (key != items.key && items.next != null){
+    //   items = items.next;
+
+    //   // if (key != items.key){
+    //     return console.log(null);
+    //   // }
+    // }
+    
+    // return console.log(items.value);
     
     if (!items.key){
+      console.log(items.key)
       return null
     } else 
       while (items.key != key && items.next != null){
@@ -76,7 +90,7 @@ test.set('apple', 'orange');
 
 test.get('j');
 test.get('apple');
-test.get('j');
+test.get('x');
 
 
 
