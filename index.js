@@ -34,54 +34,24 @@ class HashMap {
     if (!this.storage[index]) { 
       this.storage[index] = newNode;
     } else { 
-      
-      // let current = this.storage[index];
-      // if (key == current.key){
-      //   current.value = value;
-      // } else {
-      //   while (current.next){
-      //   console.log(current.next)
-      //     current = current.next
-      //   }
-      //   current.next = newNode;
-      // }
+      let items = this.storage[index];
 
-    let items = this.storage[index];
+      while (items.key != key && items.next != null){
+          items = items.next;
 
-
-    //problem is that  it doesnt loop thourgh to check if the key 
-    //alr exists therefore it sets the alr existing the new key to new node
-    //so it has to loop thorugh first to see if it has to add node or update value
-    while (items.key != key && items.next != null){
-      items = items.next;
+          if (key = items.key){
+            return items.value = value;
+          }
+      }
       items.next = newNode;
-      console.log(items)
-    } 
-    return items.value = value;
-
-
-    // while (current.next){
-    //     console.log(current.next)
-    //       current = current.next
-    //     }
-    //     current.next = newNode;
-    //   }
   }
-      //  if (key == current.key){
-      //   current.value = value;
-      // } else {
-      //   while (current.next){
-      //   console.log(current.next)
-      //     current = current.next
-      //   }
-      //   current.next = newNode;
-      // }
+
   }
 
   get(key){
     const index = this.hash(key);
     let items = this.storage[index];
-    console.log(items)
+    // console.log(items)
     
     if (!items.key){
       return null
@@ -95,15 +65,19 @@ class HashMap {
 
 
 const test = new HashMap();
-test.set('apple', 'red');
+// test.set('apple', 'red');
 test.set('j', 'blue');
 test.set('apple', 'purple');
+test.set('apple', 'orange');
+
 
 // test.set('apple', 'purple');
 // test.set('j', 'purple');
 
+test.get('j');
 test.get('apple');
 test.get('j');
+
 
 
 
