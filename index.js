@@ -53,29 +53,35 @@ class HashMap {
     const index = this.hash(key);
     console.log(index)
     let items = this.storage[index];
+    console.log(this.storage[1])
+    console.log(items)
     // console.log(items)
-    console.log(items.key)
+    // console.log(items.key)
 
-
-    while (key != items.key){ //&& items.next != null){
-      items = items.next;
-      // console.log(items)
-    }
-    console.log(items.key)
-
-    if (!key){
+    if (items == undefined){
       return null
+    } else {
+      while (key != items.key){ //&& items.next != null){
+        items = items.next;
+        // console.log(items)
+      }
+      console.log(items.key)
+
+      // if (!key){
+      //   return null
+      // }
+      return console.log(items.value)
     }
-    return console.log(items.value)
+
   }
   }
 
 
 const test = new HashMap();
-// test.set('apple', 'red');
-// test.set('j', 'blue');
-// test.set('apple', 'purple');
-// test.set('apple', 'orange');
+test.set('apple', 'red');
+test.set('j', 'blue');
+test.set('apple', 'purple');
+test.set('apple', 'orange');
 
 // test.get('j');
 // test.get('apple');
