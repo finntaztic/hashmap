@@ -51,30 +51,32 @@ class HashMap {
 
   get(key){
     const index = this.hash(key);
+    console.log(index)
     let items = this.storage[index];
     // console.log(items)
-    // console.log(items.key)
+    console.log(items.key)
 
 
-    while (key != items.key && items.next != null){
+    while (key != items.key){ //&& items.next != null){
       items = items.next;
+      // console.log(items)
     }
     console.log(items.key)
 
-    // if (!key){
-    //   return null
-    // }
-    // return console.log(items.value)
+    if (!key){
+      return null
+    }
+    return console.log(items.value)
   }
   }
 
 
 const test = new HashMap();
 // test.set('apple', 'red');
-test.set('j', 'blue');
-test.set('apple', 'purple');
-test.set('apple', 'orange');
+// test.set('j', 'blue');
+// test.set('apple', 'purple');
+// test.set('apple', 'orange');
 
-test.get('j');
-test.get('apple');
+// test.get('j');
+// test.get('apple');
 test.get('xo'); //not existing
