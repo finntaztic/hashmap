@@ -77,4 +77,4 @@ test.set('apple', 'orange');
 
 test.get('j');
 test.get('apple');
-// test.get('xo'); //not existing
+test.get('xo'); //not existing
