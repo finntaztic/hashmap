@@ -48,32 +48,23 @@ class HashMap {
 
   }
 
+
   get(key){
     const index = this.hash(key);
     let items = this.storage[index];
     // console.log(items)
-
-
     // console.log(items.key)
 
-    // while (key != items.key && items.next != null){
-    //   items = items.next;
 
-    //   // if (key != items.key){
-    //     return console.log(null);
-    //   // }
-    // }
-    
-    // return console.log(items.value);
-    
-    if (!items.key){
-      console.log(items.key)
-      return null
-    } else 
-      while (items.key != key && items.next != null){
+    while (key != items.key && items.next != null){
       items = items.next;
     }
-    return console.log(items.value);
+    console.log(items.key)
+
+    // if (!key){
+    //   return null
+    // }
+    // return console.log(items.value)
   }
   }
 
@@ -84,30 +75,6 @@ test.set('j', 'blue');
 test.set('apple', 'purple');
 test.set('apple', 'orange');
 
-
-// test.set('apple', 'purple');
-// test.set('j', 'purple');
-
 test.get('j');
 test.get('apple');
-test.get('x');
-
-
-
-
-
-//limit the size of the array inside the buckets
-// if (index < 0 || index >= buckets.length) {
-//   throw new Error("Trying to access index out of bounds");
-// }
-
-// console.log(test.set())
-// clg
-
-//things that are confusing
-// can i limit the number of buckets?  am i supposed to limit it? i dont think the hashmap project says anything about it
-// is the term 'hash table' and 'bucket' interchangeable? im confuseddd
-// is the hash table and hashmap the same?
-// do i need hashtable for this? how many table anyway? isnt it the load factor and capacity?
-
-// capcaity is 16, load factor is 0.75
+// test.get('xo'); //not existing
