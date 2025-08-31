@@ -29,7 +29,6 @@ class HashMap {
   set(key, value){
     const index = this.hash(key);
     const newNode = new Node (key, value);
-    // console.log(index)
 
     if (!this.storage[index]) { 
       this.storage[index] = newNode;
@@ -38,40 +37,74 @@ class HashMap {
 
       while (items.key != key && items.next != null){
           items = items.next;
+      }
 
-          if (key = items.key){
+      if (key === items.key){
             return items.value = value;
           }
-      }
       items.next = newNode;
   }
-
   }
 
 
   get(key){
     const index = this.hash(key);
-    console.log(index)
     let items = this.storage[index];
-    console.log(this.storage[1])
-    console.log(items)
-    // console.log(items)
-    // console.log(items.key)
 
-    if (items == undefined){
-      return null
+    if (items == undefined){ 
+      return null;
     } else {
-      while (key != items.key){ //&& items.next != null){
+      while (key != items.key && items.next != null){
         items = items.next;
-        // console.log(items)
       }
-      console.log(items.key)
 
-      // if (!key){
-      //   return null
-      // }
-      return console.log(items.value)
+      if (key != items.key){
+        return null;
+      }
+      return items.value;
     }
+  }
+
+  has(key){
+    const index = this.hash(key);
+    let items = this.storage[index];
+
+    if (items == undefined){ 
+      return false;
+    } else {
+      while (key != items.key && items.next != null){
+        items = items.next;
+      }
+
+      if (key != items.key){
+        return false;
+      }
+      return true;
+    }
+  }
+
+  remove(key){
+    const index = this.hash(key);
+    let items = this.storage[index];
+
+    if (items == undefined){ 
+      return false;
+    } else {
+      while (key != items.key && items.next != null){
+        items = items.next;
+      }
+
+      if (key != items.key){
+        return false;
+      }
+
+      return true;
+    }
+  
+    //check if the key exists 
+    //if yes, remove the key, and return true
+    //if no. return false
+
 
   }
   }
@@ -79,10 +112,13 @@ class HashMap {
 
 const test = new HashMap();
 test.set('apple', 'red');
-test.set('j', 'blue');
-test.set('apple', 'purple');
-test.set('apple', 'orange');
+test.set('j', 'orange');
+test.set('apple', 'blue');
 
-// test.get('j');
-// test.get('apple');
-test.get('xo'); //not existing
+console.log(test.has('j'))
+console.log(test.has('apple'))
+console.log(test.has('xo'))
+
+
+
+
