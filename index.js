@@ -8,7 +8,6 @@ class Node {
     this.next = next;
   }
 }
-
 class HashMap {
   capacity = 16;
   loadFactor;
@@ -16,7 +15,7 @@ class HashMap {
   constructor(){
     this.storage = [];
   }
-  //hashcode formula
+  //hash code formula
   hash(key){
     let hashCode = 0;
     const primeNumber = 31;
@@ -45,7 +44,6 @@ class HashMap {
       items.next = newNode;
   }
   }
-
 
   get(key){
     const index = this.hash(key);
@@ -86,38 +84,68 @@ class HashMap {
   remove(key){
     const index = this.hash(key);
     let items = this.storage[index];
+    // console.log(items)
 
     if (items == undefined){ 
       return false;
-    } else {
-      while (key != items.key && items.next != null){
-        items = items.next;
-      }
-
-      if (key != items.key){
-        return false;
-      }
-
+    } else if (items.key === key){
+      items = items.next;
+      console.log(items)
       return true;
     }
-  
-    //check if the key exists 
-    //if yes, remove the key, and return true
-    //if no. return false
+    
+    // else {
+    //   while (key != items.key && items.next != null){
+    //     items = items.next;
+    //   }
+
+    //   if (key != items.key){
+    //     return false;
+    //   }
+
+    //   items.delete ('apple')
+    //   console.log(items)
+
+    //   return true;
+    // }
+  }
 
 
+  removeDel(key){
+    const index = this.hash(key);
+    let previous = this.storage[index];
+
+    //this works but it doesnt have false value so need to add that;
+
+    console.log(previous)
+
+    while (previous){
+      let current = previous.next;
+
+      if (current){
+        if (current.key === key){
+          previous.next = current.next;
+        }
+      }
+      previous = current;
+      console.log(previous)
+      return true
+    }
   }
   }
-
 
 const test = new HashMap();
 test.set('apple', 'red');
 test.set('j', 'orange');
 test.set('apple', 'blue');
+test.set('mango', 'yellow');
 
-console.log(test.has('j'))
-console.log(test.has('apple'))
-console.log(test.has('xo'))
+
+console.log(test.remove('apple'))
+// console.log(test.remove('mango'))
+
+
+
 
 
 
