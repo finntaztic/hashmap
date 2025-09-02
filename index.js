@@ -11,6 +11,7 @@ class Node {
 class HashMap {
   capacity = 16;
   loadFactor;
+  length = 0
 
   constructor(){
     this.storage = [];
@@ -31,6 +32,7 @@ class HashMap {
 
     if (!this.storage[index]) { 
       this.storage[index] = newNode;
+      this.length++
     } else { 
       let items = this.storage[index];
 
@@ -42,6 +44,7 @@ class HashMap {
             return items.value = value;
           }
       items.next = newNode;
+      this.length++
   }
   }
 
@@ -66,6 +69,7 @@ class HashMap {
   has(key){
     const index = this.hash(key);
     let items = this.storage[index];
+    console.log(index)
 
     if (items == undefined){ 
       return false;
@@ -84,64 +88,48 @@ class HashMap {
   remove(key){
     const index = this.hash(key);
     let items = this.storage[index];
-    // console.log(items)
 
     if (items == undefined){ 
       return false;
-    } else if (items.key === key){
-      items = items.next;
-      console.log(items)
-      return true;
+    } else {
+        while (key != items.key && items.next != null){
+          items = items.next; 
+        } 
+        items = items.next;
+        // items.next = items.next;
+        console.log(items)
+        this.length--
+        return true;
     }
-    
-    // else {
-    //   while (key != items.key && items.next != null){
-    //     items = items.next;
-    //   }
-
-    //   if (key != items.key){
-    //     return false;
-    //   }
-
-    //   items.delete ('apple')
-    //   console.log(items)
-
-    //   return true;
-    // }
   }
 
+  length(){
+    return this.length;
+  }
+
+  clear(){
+    
+  }
 
   removeDel(key){
     const index = this.hash(key);
     let previous = this.storage[index];
-
-    //this works but it doesnt have false value so need to add that;
-
     console.log(previous)
-
-    while (previous){
-      let current = previous.next;
-
-      if (current){
-        if (current.key === key){
-          previous.next = current.next;
-        }
-      }
-      previous = current;
-      console.log(previous)
-      return true
-    }
   }
   }
 
 const test = new HashMap();
-test.set('apple', 'red');
+// test.set('apple', 'red');
 test.set('j', 'orange');
 test.set('apple', 'blue');
 test.set('mango', 'yellow');
+test.set('Ê', 'yellow');
+
+test.remove('Ê');
+test.remove('j');
+console.log(test.length)
 
 
-console.log(test.remove('apple'))
 // console.log(test.remove('mango'))
 
 
