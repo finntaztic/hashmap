@@ -105,10 +105,21 @@ class HashMap {
 
   length(){
     return this.length;
+    
   }
 
   clear(){
-    
+    const index = this.hash(key);
+    let items = this.storage[index];
+
+    for (let i = 0; i < key.length; i++){
+
+    }
+
+
+//for loop through the key capacity delete each 
+    console.log(items)
+    // let items = this.storage[index];
   }
 
   removeDel(key){
@@ -128,6 +139,7 @@ test.set('Ê', 'yellow');
 test.remove('Ê');
 test.remove('j');
 console.log(test.length)
+test.clear()
 
 
 // console.log(test.remove('mango'))
