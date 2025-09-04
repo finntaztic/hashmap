@@ -16,6 +16,11 @@ class HashMap {
   constructor(){
     this.storage = [];
   }
+
+
+  cap(){
+    return this.capacity;
+  }
   //hash code formula
   hash(key){
     let hashCode = 0;
@@ -105,29 +110,41 @@ class HashMap {
 
   length(){
     return this.length;
-    
   }
+
 
   clear(){
-    const index = this.hash(key);
+    let key = 0;
+    let index = this.hash(key);
     let items = this.storage[index];
 
-    for (let i = 0; i < key.length; i++){
+    for (let i = 0; i < 16; i++){
+      key++
 
+        if (this.storage[key] == undefined){
+          this.storage[key];
+        } else {
+          this.storage[key] = undefined;
+        }
+      console.log(this.storage[key]) 
     }
-
-
-//for loop through the key capacity delete each 
-    console.log(items)
-    // let items = this.storage[index];
   }
 
-  removeDel(key){
+  keys(){
+
+    // let capacity = cap()
+    console.log(cap())
+    let startKey = 0;
+    console.log(capacity)
     const index = this.hash(key);
-    let previous = this.storage[index];
-    console.log(previous)
+
+    for (let i = 0; i < 16; i++){
+      key++
+
   }
+
   }
+}
 
 const test = new HashMap();
 // test.set('apple', 'red');
@@ -136,10 +153,12 @@ test.set('apple', 'blue');
 test.set('mango', 'yellow');
 test.set('Ê', 'yellow');
 
-test.remove('Ê');
-test.remove('j');
-console.log(test.length)
-test.clear()
+test.keys()
+
+// test.remove('Ê');
+// test.remove('j');
+// console.log(test.length)
+// test.clear();
 
 
 // console.log(test.remove('mango'))
