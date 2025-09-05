@@ -90,6 +90,8 @@ class HashMap {
     }
   }
 
+
+  ////realised that i ahve to push the new value to storage index so when its remove it would work to every function
   remove(key){
     const index = this.hash(key);
     let items = this.storage[index];
