@@ -17,10 +17,8 @@ class HashMap {
     this.storage = [];
   }
 
+  getCapacity(){return this.capacity}
 
-  cap(){
-    return this.capacity;
-  }
   //hash code formula
   hash(key){
     let hashCode = 0;
@@ -132,19 +130,17 @@ class HashMap {
     }
   }
 
-  keys(){
 
-    // let capacity = cap()
-    console.log(cap())
-    let startKey = 0;
-    console.log(capacity)
+  keys(){
+    let myCap = this.getCapacity();
+    myCap
+    let key = 0;
     const index = this.hash(key);
 
-    for (let i = 0; i < 16; i++){
+    for (let i = 0; i < myCap; i++){ 
+      console.log(this.storage[key])
       key++
-
   }
-
   }
 }
 
@@ -155,7 +151,7 @@ test.set('apple', 'blue');
 test.set('mango', 'yellow');
 test.set('Ê', 'yellow');
 
-test.keys()
+console.log(test.keys())
 
 // test.remove('Ê');
 // test.remove('j');
