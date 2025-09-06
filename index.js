@@ -17,7 +17,8 @@ class HashMap {
     this.storage = [];
   }
 
-  getCapacity(){return this.capacity}
+  getCapacity(){return this.capacity};
+  getLoadFactor(){   return this.length / this.capacity;};
 
   //hash code formula
   hash(key){
@@ -29,9 +30,16 @@ class HashMap {
     return hashCode % this.capacity;
   }
 
+
+
   set(key, value){
-    const index = this.hash(key);
+        const index = this.hash(key);
     const newNode = new Node (key, value);
+
+
+     if (index < 0 || index >= this.capacity) {
+    throw new Error("Trying to access index out of bounds");
+  }
 
     if (!this.storage[index]) { 
       this.storage[index] = newNode;
@@ -49,7 +57,26 @@ class HashMap {
       items.next = newNode;
       this.length++
   }
+
+  if (this.getLoadFactor() > 0.75) {
+    this.resize();
   }
+  }
+
+  resize() {
+  this.capacity = this.capacity * 2;
+  let oldStorage = this.storage;
+  this.storage = [];
+  this.length = 0; // will be updated by set()
+
+  for (let i = 0; i < oldStorage.length; i++) {
+    let currentNode = oldStorage[i];
+    while (currentNode) {
+      this.set(currentNode.key, currentNode.value);
+      currentNode = currentNode.next;
+    }
+  }
+}
 
   get(key){
     const index = this.hash(key);
@@ -90,23 +117,45 @@ class HashMap {
 
 
   ////realised that i ahve to push the new value to storage index so when its remove it would work to every function
-  remove(key){
-    const index = this.hash(key);
-    let items = this.storage[index];
+  // remove(key){
+  //   const index = this.hash(key);
+  //   let items = this.storage[index];
 
-    if (items == undefined){ 
-      return false;
-    } else {
-        while (key != items.key && items.next != null){
-          items = items.next; 
-        } 
-        items = items.next;
-        // items.next = items.next;
-        console.log(items)
-        this.length--
-        return true;
+  //   if (items == undefined){ 
+  //     return false;
+  //   } else {
+  //       while (key != items.key && items.next != null){
+  //         items = items.next; 
+  //       } 
+  //       items = items.next;
+  //       // items.next = items.next;
+  //       console.log(items)
+  //       this.length--
+  //       return true;
+  //   }
+  // }
+
+  remove(key) {
+  const index = this.hash(key);
+  let current = this.storage[index];
+  let prev = null;
+
+  while (current) {
+    if (current.key === key) {
+      if (prev) {
+        prev.next = current.next; // unlink from chain
+      } else {
+        this.storage[index] = current.next; // removed head
+      }
+      this.length--;
+      return true;
     }
+    prev = current;
+    current = current.next;
   }
+  return false;
+}
+
 
   length(){
     return this.length;
@@ -130,18 +179,33 @@ class HashMap {
     }
   }
 
+//with ai help
+keys() {
+  let myCap = this.getCapacity();
 
-  keys(){
-    let myCap = this.getCapacity();
-    myCap
-    let key = 0;
-    const index = this.hash(key);
+  for (let i = 0; i < myCap; i++) {
+    let currentNode = this.storage[i];
 
-    for (let i = 0; i < myCap; i++){ 
-      console.log(this.storage[key])
-      key++
+    while (currentNode) {
+      console.log(currentNode.key);
+      currentNode = currentNode.next;
+    }
   }
+}
+
+value() {
+  let myCap = this.getCapacity();
+
+  for (let i = 0; i < myCap; i++) {
+    let currentNode = this.storage[i];
+
+    while (currentNode) {
+      console.log([currentNode.key, currentNode.value]);
+      currentNode = currentNode.next;
+    }
   }
+}
+
 }
 
 const test = new HashMap();
@@ -151,7 +215,9 @@ test.set('apple', 'blue');
 test.set('mango', 'yellow');
 test.set('Ê', 'yellow');
 
-console.log(test.keys())
+test.keys();
+test.value();
+
 
 // test.remove('Ê');
 // test.remove('j');
